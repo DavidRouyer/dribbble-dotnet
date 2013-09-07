@@ -46,6 +46,9 @@ Learn about the Dribbble API at http://dribbble.com/api
 
 == Credits 
 
+A Mono and .NET library for the Dribbble API, built using C# - By Jake Scott
+https://github.com/superlogical/dribbble-dotnet
+
 Hammock is a REST library for .NET that greatly simplifies consuming and wrapping RESTful services.
 http://hammock.codeplex.com
 
