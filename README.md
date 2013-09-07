@@ -1,12 +1,15 @@
-= DribbbleDotNet! 
+Dribbble .NET Library
+==============
 
-A C# wrapper for the Dribbble API based on the Ruby wrapper Swish at http://github.com/jeremyw/swish
+A C# wrapper for the Dribbble API based on https://github.com/superlogical/dribbble-dotnet
 
 Learn about the Dribbble API at http://dribbble.com/api
  
-== Examples
-    
-  // Find a player
+Examples
+--------------
+
+```    
+  //Find a player
   var player = Player.Find(1);
 
   // Find a players shots
@@ -43,8 +46,10 @@ Learn about the Dribbble API at http://dribbble.com/api
   PaginatedList<Comment> comments = shot.Comments();
 
   // Checkout the Tests for more!!
+```
 
-== Credits 
+Credits
+--------------
 
 A Mono and .NET library for the Dribbble API, built using C# - By Jake Scott
 https://github.com/superlogical/dribbble-dotnet
