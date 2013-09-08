@@ -3,8 +3,9 @@ namespace DribbbleDotNet.Serializers
     using System;
     using System.IO;
     using System.Text;
-    using Hammock.Serialization;
     using Newtonsoft.Json;
+    using System.Net.Http;
+    using System.Threading.Tasks;
 
     internal class DribbbleSerializer : ISerializer, IDeserializer
     {
@@ -28,9 +29,9 @@ namespace DribbbleDotNet.Serializers
             }
         }
 
-        public virtual object Deserialize(string content, Type type)
+        public async virtual Task<object> Deserialize(HttpResponseMessage response, Type type)
         {
-            using (var stringReader = new StringReader(content))
+            using (var stringReader = new StringReader(await response.Content.ReadAsStringAsync()))
             {
                 using (var jsonTextReader = new JsonTextReader(stringReader))
                 {
@@ -39,9 +40,9 @@ namespace DribbbleDotNet.Serializers
             }
         }
 
-        public virtual T Deserialize<T>(string content)
+        public async virtual Task<T> Deserialize<T>(HttpResponseMessage response)
         {
-            using (var stringReader = new StringReader(content))
+            using (var stringReader = new StringReader(await response.Content.ReadAsStringAsync()))
             {
                 using (var jsonTextReader = new JsonTextReader(stringReader))
                 {

@@ -22,7 +22,7 @@
             writer.WriteComment(value.ToString()); // Dribbble API is readonly so there is no point in doing the write.
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var json = JObject.Load(reader);
 

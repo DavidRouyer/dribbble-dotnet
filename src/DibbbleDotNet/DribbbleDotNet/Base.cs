@@ -3,15 +3,15 @@
     using System;
     using System.Collections.Generic;
     using Convertors;
-    using Hammock;
     using Newtonsoft.Json;
     using Serializers;
+    using System.Net.Http;
 
     public abstract class Base
     {
         private static readonly JsonSerializerSettings settings;
         private static readonly DribbbleSerializer serializer;
-        protected static RestClient client;
+        protected static HttpClient client;
         
         static Base()
         {
@@ -30,14 +30,11 @@
 
             serializer = new DribbbleSerializer(settings);
 
-            client = new RestClient
-            {
-                Authority = "http://api.dribbble.com",
-            };
-
-            client.AddHeader("Accept", "application/json");
-            client.AddHeader("Content-Type", "application/json; charset=utf-8");
-            client.AddHeader("User-Agent", "DribbbleDotNet");
+            client = new HttpClient();
+            client.BaseAddress = new Uri("http://api.dribbble.com");
+            client.DefaultRequestHeaders.Add("Accept", "application/json; charset=utf-8");
+            //client.DefaultRequestHeaders.Add("Content-Type", "application/json; charset=utf-8");
+            client.DefaultRequestHeaders.Add("User-Agent", "DribbbleDotNet");
         }
 
         public long Id { get; set; }
@@ -75,10 +72,9 @@
             return !Equals(left, right);
         }
 
-        protected static void SetPaginationParameters(RestRequest request, int page, int perPage)
+        protected static void SetPaginationParameters(HttpRequestMessage request, int page, int perPage)
         {
-            request.AddParameter("page", page.ToString());
-            request.AddParameter("per_page", perPage.ToString());
+            request.RequestUri = new Uri(request.RequestUri.AbsoluteUri + "?page=" + page.ToString() + "&per_page=" + perPage.ToString());
         }
 
         protected static T Deserialize<T>(string content)

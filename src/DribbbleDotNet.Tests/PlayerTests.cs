@@ -6,9 +6,9 @@
     public class PlayerTests
     {
         [Test]
-        public void Find()
+        public async void Find()
         {
-            var player = Player.Find(1);
+            var player = await Player.Find(1);
 
             Assert.AreEqual(1, player.Id);
             Assert.AreEqual("simplebits", player.TwitterScreenName);
@@ -41,17 +41,17 @@
         }
 
         [Test]
-        public void Shots()
+        public async void Shots()
         {
-            Player player = Player.Find(1);
-            PaginatedList<Shot> shots = player.Shots();
+            Player player = await Player.Find(1);
+            PaginatedList<Shot> shots = await player.Shots();
             Assert.AreEqual(15, shots.Items.Count, "default page size");
             foreach (var shot in shots.Items)
             {
                 Assert.NotNull(shot.Player);
                 Assert.AreEqual(player, shot.Player);
             }
-            shots = player.Shots(perPage:2);
+            shots = await player.Shots(perPage:2);
             Assert.AreEqual(2, shots.Items.Count);
             foreach (var shot in shots.Items)
             {
@@ -61,17 +61,17 @@
         }
 
         [Test]
-        public void ShotsFollowing()
+        public async void ShotsFollowing()
         {
-            Player player = Player.Find(1);
-            PaginatedList<Shot> shots = player.ShotsFollowing();
+            Player player = await Player.Find(1);
+            PaginatedList<Shot> shots = await player.ShotsFollowing();
             Assert.AreEqual(15, shots.Items.Count, "default page size");
             foreach (var shot in shots.Items)
             {
                 Assert.NotNull(shot.Player);
                 Assert.AreNotEqual(player, shot.Player);
             }
-            shots = player.ShotsFollowing(perPage: 2);
+            shots = await player.ShotsFollowing(perPage: 2);
             Assert.AreEqual(2, shots.Items.Count);
             foreach (var shot in shots.Items)
             {
@@ -81,10 +81,10 @@
         }
 
         [Test]
-        public void ShotsLikes()
+        public async void ShotsLikes()
         {
-            Player player = Player.Find(1);
-            PaginatedList<Shot> shots = player.ShotsLikes();
+            Player player = await Player.Find(1);
+            PaginatedList<Shot> shots = await player.ShotsLikes();
             Assert.AreEqual(15, shots.Items.Count, "default page size");
             foreach (var shot in shots.Items)
             {
@@ -92,7 +92,7 @@
                 Assert.AreNotEqual(player, shot.Player);
             }
 
-            shots = player.ShotsLikes(perPage: 2);
+            shots = await player.ShotsLikes(perPage: 2);
             Assert.AreEqual(2, shots.Items.Count);
             foreach (var shot in shots.Items)
             {
@@ -102,35 +102,35 @@
         }
 
         [Test]
-        public void Followers()
+        public async void Followers()
         {
-            Player player = Player.Find(1);
-            PaginatedList<Player> followers = player.Followers();
+            Player player = await Player.Find(1);
+            PaginatedList<Player> followers = await player.Followers();
             Assert.AreEqual(15, followers.Items.Count, "default page size");
 
-            followers = player.Followers(perPage:2);
+            followers = await player.Followers(perPage:2);
             Assert.AreEqual(2, followers.Items.Count);
         }
 
         [Test]
-        public void Following()
+        public async void Following()
         {
-            Player player = Player.Find(1);
-            PaginatedList<Player> following = player.Following();
+            Player player = await Player.Find(1);
+            PaginatedList<Player> following = await player.Following();
             Assert.AreEqual(15, following.Items.Count, "default page size");
 
-            following = player.Followers(perPage: 2);
+            following = await player.Followers(perPage: 2);
             Assert.AreEqual(2, following.Items.Count);
         }
 
         [Test]
-        public void Draftees()
+        public async void Draftees()
         {
-            Player player = Player.Find(1);
-            PaginatedList<Player> draftees = player.Draftees();
+            Player player = await Player.Find(1);
+            PaginatedList<Player> draftees = await player.Draftees();
             Assert.AreEqual(15, draftees.Items.Count, "default page size");
 
-            draftees = player.Followers(perPage: 2);
+            draftees = await player.Followers(perPage: 2);
             Assert.AreEqual(2, draftees.Items.Count);
         }
     }

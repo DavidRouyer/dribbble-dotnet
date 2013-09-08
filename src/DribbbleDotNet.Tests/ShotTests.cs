@@ -1,14 +1,15 @@
 ﻿namespace DribbbleDotNet.Tests
 {
     using NUnit.Framework;
+    using System.Threading.Tasks;
 
     [TestFixture]
     public class ShotTests
     {
         [Test]
-        public void Find()
+        public async void Find()
         {
-            Shot shot = Shot.Find(21603);
+            Shot shot = await Shot.Find(21603);
 
             Assert.NotNull(shot);
             Assert.AreEqual(21603, shot.Id);
@@ -30,31 +31,31 @@
         }
 
         [Test]
-        public void Everyone()
+        public async void Everyone()
         {
-            PaginatedList<Shot> everyone = Shot.Everyone(perPage:2);
+            PaginatedList<Shot> everyone = await Shot.Everyone(perPage:2);
             Assert.AreEqual(2, everyone.Items.Count);
         }
 
         [Test]
-        public void Debuts()
+        public async void Debuts()
         {
-            PaginatedList<Shot> debuts = Shot.Debuts(perPage: 2);
+            PaginatedList<Shot> debuts = await Shot.Debuts(perPage: 2);
             Assert.AreEqual(2, debuts.Items.Count);
         }
 
         [Test]
-        public void Popular()
+        public async void Popular()
         {
-            PaginatedList<Shot> popular = Shot.Popular(perPage: 2);
+            PaginatedList<Shot> popular = await Shot.Popular(perPage: 2);
             Assert.AreEqual(2, popular.Items.Count);
         }
 
         [Test]
-        public void Rebounds()
+        public async void Rebounds()
         {
-            Shot shot = Shot.Find(59714);
-            PaginatedList<Shot> rebounds = shot.Rebounds();
+            Shot shot = await Shot.Find(59714);
+            PaginatedList<Shot> rebounds = await shot.Rebounds();
 
             foreach (Shot rebound in rebounds.Items)
             {
@@ -63,10 +64,10 @@
         }
 
         [Test]
-        public void Comments()
+        public async void Comments()
         {
-            Shot shot = Shot.Find(59714);
-            PaginatedList<Comment> comments = shot.Comments();
+            Shot shot = await Shot.Find(59714);
+            PaginatedList<Comment> comments = await shot.Comments();
             Assert.IsNotEmpty(comments.Items);
             foreach (var comment in comments.Items)
             {

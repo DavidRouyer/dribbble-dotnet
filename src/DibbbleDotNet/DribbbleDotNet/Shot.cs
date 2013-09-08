@@ -1,58 +1,56 @@
 namespace DribbbleDotNet
 {
     using System;
-    using Hammock;
-    using Hammock.Web;
     using Newtonsoft.Json;
+    using System.Net.Http;
+    using System.Threading.Tasks;
 
     public class Shot : Base
     {
-        public static Shot Find(int id)
+        public async static Task<Shot> Find(int id)
         {
-            var request = new RestRequest
-            {
-                Path = string.Format("shots/{0}", id),
-                Method = WebMethod.Get
-            };
-
-            var response = client.Request(request);
-            return Deserialize<Shot>(response.Content);
+            var request = client.BaseAddress + string.Format("shots/{0}", id);
+            var response = await client.GetAsync(request);
+            return Deserialize<Shot>(await response.Content.ReadAsStringAsync());
         }
 
-        public static PaginatedList<Shot> Debuts(int page = 1, int perPage = 15)
+        public async static Task<PaginatedList<Shot>> Debuts(int page = 1, int perPage = 15)
         {
-            var request = new RestRequest
+            var request = new HttpRequestMessage
             {
-                Path = string.Format("/shots/debuts"),
-                Method = WebMethod.Get
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(client.BaseAddress + string.Format("shots/debuts"))
             };
+
             SetPaginationParameters(request, page, perPage);
-            var response = client.Request(request);
-            return Deserialize<PaginatedList<Shot>>(response.Content);
+            var response = await client.SendAsync(request);
+            return Deserialize<PaginatedList<Shot>>(await response.Content.ReadAsStringAsync());
         }
 
-        public static PaginatedList<Shot> Everyone(int page = 1, int perPage = 15)
+        public async static Task<PaginatedList<Shot>> Everyone(int page = 1, int perPage = 15)
         {
-            var request = new RestRequest
+            var request = new HttpRequestMessage
             {
-                Path = string.Format("/shots/everyone"),
-                Method = WebMethod.Get
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(client.BaseAddress + string.Format("/shots/everyone"))
             };
+
             SetPaginationParameters(request, page, perPage);
-            var response = client.Request(request);
-            return Deserialize<PaginatedList<Shot>>(response.Content);
+            var response = await client.SendAsync(request);
+            return Deserialize<PaginatedList<Shot>>(await response.Content.ReadAsStringAsync());
         }
 
-        public static PaginatedList<Shot> Popular(int page = 1, int perPage = 15)
+        public async static Task<PaginatedList<Shot>> Popular(int page = 1, int perPage = 15)
         {
-            var request = new RestRequest
+            var request = new HttpRequestMessage
             {
-                Path = string.Format("/shots/popular"),
-                Method = WebMethod.Get
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(client.BaseAddress + string.Format("/shots/popular"))
             };
+
             SetPaginationParameters(request, page, perPage);
-            var response = client.Request(request);
-            return Deserialize<PaginatedList<Shot>>(response.Content);
+            var response = await client.SendAsync(request);
+            return Deserialize<PaginatedList<Shot>>(await response.Content.ReadAsStringAsync());
         }
 
         public string Title { get; set; }
@@ -85,28 +83,30 @@ namespace DribbbleDotNet
 
         public Player Player { get; set; }
 
-        public PaginatedList<Shot> Rebounds(int page = 1, int perPage = 15)
+        public async Task<PaginatedList<Shot>> Rebounds(int page = 1, int perPage = 15)
         {
-            var request = new RestRequest
+            var request = new HttpRequestMessage
             {
-                Path = string.Format("/shots/{0}/rebounds", Id),
-                Method = WebMethod.Get
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(client.BaseAddress + string.Format("/shots/{0}/rebounds", Id))
             };
+
             SetPaginationParameters(request, page, perPage);
-            var response = client.Request(request);
-            return Deserialize<PaginatedList<Shot>>(response.Content);
+            var response = await client.SendAsync(request);
+            return Deserialize<PaginatedList<Shot>>(await response.Content.ReadAsStringAsync());
         }
 
-        public PaginatedList<Comment> Comments(int page = 1, int perPage = 15)
+        public async Task<PaginatedList<Comment>> Comments(int page = 1, int perPage = 15)
         {
-            var request = new RestRequest
+            var request = new HttpRequestMessage
             {
-                Path = string.Format("/shots/{0}/comments", Id),
-                Method = WebMethod.Get
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(client.BaseAddress + string.Format("/shots/{0}/comments", Id))
             };
+
             SetPaginationParameters(request, page, perPage);
-            var response = client.Request(request);
-            return Deserialize<PaginatedList<Comment>>(response.Content);
+            var response = await client.SendAsync(request);
+            return Deserialize<PaginatedList<Comment>>(await response.Content.ReadAsStringAsync());
         }
     }
 }
