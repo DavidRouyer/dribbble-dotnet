@@ -15,8 +15,8 @@
             Assert.AreEqual(21603, shot.Id);
             Assert.AreEqual("Moon", shot.Title);
             Assert.AreEqual("http://dribbble.com/shots/21603-Moon", shot.Url);
-            Assert.That(shot.ImageUrl.StartsWith("http://dribbble.s3.amazonaws.com/users/1/screenshots/21603/shot_1274474082.png"));
-            Assert.That(shot.ImageTeaserUrl.StartsWith("http://dribbble.s3.amazonaws.com/users/1/screenshots/21603/shot_1274474082_teaser.png"));
+            Assert.That(shot.ImageUrl.StartsWith("https://d13yacurqjgara.cloudfront.net/users/1/screenshots/21603/shot_1274474082.png"));
+            Assert.That(shot.ImageTeaserUrl.StartsWith("https://d13yacurqjgara.cloudfront.net/users/1/screenshots/21603/shot_1274474082_teaser.png"));
 			
             Assert.AreEqual(400, shot.Width);
             Assert.AreEqual(300, shot.Height);
