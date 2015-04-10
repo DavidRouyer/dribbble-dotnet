@@ -72,7 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\DibbbleDotNet\DribbbleDotNet\Convertors\PaginatedListConvertor.cs">
+    <Compile Include="..\DribbbleDotNet\Convertors\PaginatedListConvertor.cs">
       <Link>PaginatedListConvertor.cs</Link>
     </Compile>
     <Compile Include="BaseTests.cs" />
@@ -82,7 +82,7 @@
     <Compile Include="ShotTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DibbbleDotNet\DribbbleDotNet\DribbbleDotNet.csproj">
+    <ProjectReference Include="..\DribbbleDotNet\DribbbleDotNet.csproj">
       <Project>{8E6B7E5E-3261-4922-9B36-BF2D98006C88}</Project>
       <Name>DribbbleDotNet</Name>
     </ProjectReference>

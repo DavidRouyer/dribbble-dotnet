@@ -1,9 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DribbbleDotNet", "DibbbleDotNet\DribbbleDotNet\DribbbleDotNet.csproj", "{8E6B7E5E-3261-4922-9B36-BF2D98006C88}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DribbbleDotNet", "src\DribbbleDotNet\DribbbleDotNet.csproj", "{8E6B7E5E-3261-4922-9B36-BF2D98006C88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DribbbleDotNet.Tests", "DribbbleDotNet.Tests\DribbbleDotNet.Tests.csproj", "{C5D384F8-378A-4802-91CA-AC707B4729FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DribbbleDotNet.Tests", "src\DribbbleDotNet.Tests\DribbbleDotNet.Tests.csproj", "{C5D384F8-378A-4802-91CA-AC707B4729FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
