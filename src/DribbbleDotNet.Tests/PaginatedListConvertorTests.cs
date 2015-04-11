@@ -1,13 +1,13 @@
+using Newtonsoft.Json;
+using Xunit;
+
 namespace DribbbleDotNet.Tests
 {
     using Convertors;
-    using Newtonsoft.Json;
-    using NUnit.Framework;
 
-    [TestFixture]
     public class PaginatedListConvertorTests
     {
-        [Test]
+        [Fact]
         public void CanRead_Empty_Items()
         {
             // Arrange
@@ -20,13 +20,13 @@ namespace DribbbleDotNet.Tests
             var players = JsonConvert.DeserializeObject<PaginatedList<Player>>(jsonString, convertor);
 
             // Assert
-            Assert.AreEqual(expected.Page, players.Page);
-            Assert.AreEqual(expected.Pages, players.Pages);
-            Assert.AreEqual(expected.Total, players.Total);
-            Assert.AreEqual(expected.PerPage, players.PerPage);
+            Assert.Equal(expected.Page, players.Page);
+            Assert.Equal(expected.Pages, players.Pages);
+            Assert.Equal(expected.Total, players.Total);
+            Assert.Equal(expected.PerPage, players.PerPage);
         }
 
-        [Test]
+        [Fact]
         public void CanRead_With_Items()
         {
             // Arrange
@@ -37,11 +37,11 @@ namespace DribbbleDotNet.Tests
             var players = JsonConvert.DeserializeObject<PaginatedList<Player>>(json, convertor);
 
             // Assert
-            Assert.AreEqual(1, players.Page);
-            Assert.AreEqual(100, players.Pages);
-            Assert.AreEqual(1500, players.Total);
-            Assert.AreEqual(15, players.PerPage);
-            Assert.AreEqual(1, players.Items.Count);
+            Assert.Equal(1, players.Page);
+            Assert.Equal(100, players.Pages);
+            Assert.Equal(1500, players.Total);
+            Assert.Equal(15, players.PerPage);
+            Assert.Equal(1, players.Items.Count);
         }
     }
 }
